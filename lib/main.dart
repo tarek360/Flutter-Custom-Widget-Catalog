@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: _appBarTitle, actions: [
+      appBar: AppBar(title: _appBarTitle, actions: [
         IconButton(
           icon: _searchIcon,
           onPressed: _searchPressed,

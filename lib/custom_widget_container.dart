@@ -44,7 +44,7 @@ class WidgetContainer extends StatelessWidget {
                   ),
                 ],
               ),
-              Transform.scale(scale: scale, child: child),
+              Center(child: Transform.scale(scale: scale, child: child)),
               SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
