@@ -24,7 +24,7 @@ class _OtpWidgetState extends State<OtpWidget> {
     return Container(
       color: widget.materialColor.shade900,
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: <Widget>[
             Row(
