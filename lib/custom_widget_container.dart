@@ -28,6 +28,7 @@ class WidgetContainer extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -45,7 +46,6 @@ class WidgetContainer extends StatelessWidget {
                 ],
               ),
               Center(child: Transform.scale(scale: scale, child: child)),
-              SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Wrap(
