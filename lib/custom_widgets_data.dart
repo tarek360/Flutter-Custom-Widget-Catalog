@@ -7,7 +7,8 @@ import 'otp_widget.dart';
 class CustomWidgetsData {
   static final List<CustomWidgetData> data = [
     CustomWidgetData(customWidget: OtpWidget(Colors.pink), tags: ['otp', 'pin code', 'keypad'], scale: 0.92),
-    CustomWidgetData(customWidget: SocialButtons(), tags: ['social', 'github','facebook', 'twitter', 'google']),
+    CustomWidgetData(customWidget: SocialRoundedButtonsWithText(), tags: ['social', 'github','facebook', 'twitter', 'google']),
+    CustomWidgetData(customWidget: SocialCircularButtons(), tags: ['social', 'github','facebook', 'twitter', 'google']),
   ];
 }
 

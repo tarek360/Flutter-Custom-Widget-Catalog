@@ -11,6 +11,36 @@ class SocialColors {
   static const twitter = const Color(0xFF1DA1F2);
 }
 
+class SocialCircularButton extends StatelessWidget {
+  final Widget icon;
+  final Color color;
+  final VoidCallback onPressed;
+  final String tooltip;
+
+  SocialCircularButton(
+      {@required this.icon,
+      this.color,
+      @required this.onPressed,
+      this.tooltip});
+
+  @override
+  Widget build(BuildContext context) {
+    final ButtonThemeData buttonTheme = ButtonTheme.of(context);
+    final Color buttonColor = color ?? buttonTheme.colorScheme.primary;
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: ShapeDecoration(
+          color: buttonColor,
+          shape: CircleBorder(),
+        ),
+        child: IconButton(icon: icon, tooltip: tooltip, onPressed: () {}),
+      ),
+    );
+  }
+}
+
 class SocialButton extends StatelessWidget {
   final Widget icon;
   final Color color;
@@ -51,7 +81,35 @@ class SocialButton extends StatelessWidget {
   }
 }
 
-class SocialButtons extends StatelessWidget {
+class SocialCircularButtons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      SocialCircularButton(
+          color: SocialColors.facebook,
+          icon: VectorIcon(VectorIcons.facebook, color: Colors.white),
+          tooltip: 'Facebook Sign In',
+          onPressed: () {}),
+      SocialCircularButton(
+          color: SocialColors.twitter,
+          icon: VectorIcon(VectorIcons.twitter, color: Colors.white),
+          tooltip: 'Twitter Sign In',
+          onPressed: () {}),
+      SocialCircularButton(
+          color: SocialColors.github,
+          icon: VectorIcon(VectorIcons.github, color: Colors.white),
+          tooltip: 'Github Sign In',
+          onPressed: () {}),
+      SocialCircularButton(
+          color: SocialColors.google,
+          icon: VectorIcon(VectorIcons.google, color: Colors.white),
+          tooltip: 'Google Sign In',
+          onPressed: () {}),
+    ]);
+  }
+}
+
+class SocialRoundedButtonsWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
