@@ -1,11 +1,10 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 import "package:flutter/material.dart";
 
-const CURVE_HEIGHT = 160.0;
-const AVATAR_RADIUS = CURVE_HEIGHT * 0.28;
-const AVATAR_RADIUS_WITH_MARGIN = AVATAR_RADIUS + 6;
-const AVATAR_DIAMETER = AVATAR_RADIUS * 2;
+const _CURVE_HEIGHT = 160.0; // curve height with avatar
+const _AVATAR_RADIUS = _CURVE_HEIGHT * 0.28;
+const _AVATAR_RADIUS_WITH_MARGIN = _AVATAR_RADIUS + 6;
 
 class ProfileHeader extends StatelessWidget {
   @override
@@ -15,18 +14,34 @@ class ProfileHeader extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: CURVE_HEIGHT,
+            height: _CURVE_HEIGHT,
             child: Stack(
               children: <Widget>[
-                CurvedShape(Colors.blue[700]),
+                CurvedShape(Theme.of(context).primaryColorDark),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        'https://avatars2.githubusercontent.com/u/8615768?s=460&v=4'),
-                    radius: AVATAR_RADIUS,
+                        'https://avatars2.githubusercontent.com/u/8615768?s=100'),
+                    radius: _AVATAR_RADIUS,
                   ),
-                )
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    color: Colors.white,
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {},
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    color: Colors.white,
+                    icon: Icon(Icons.edit),
+                    onPressed: () {},
+                  ),
+                ),
               ],
             ),
           ),
@@ -55,7 +70,7 @@ class CurvedShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(double.infinity, CURVE_HEIGHT),
+      size: Size(double.infinity, _CURVE_HEIGHT),
       painter: _CurvedShapePainter(color),
     );
   }
@@ -73,42 +88,41 @@ class _CurvedShapePainter extends CustomPainter {
       ..isAntiAlias = true
       ..color = color;
 
-    Offset circleCenter = Offset(size.width / 2, size.height - AVATAR_RADIUS);
+    Offset circleCenter = Offset(size.width / 2, size.height - _AVATAR_RADIUS);
 
-    Offset topLeft = Offset(0, 0);
+    Offset topLeft = Offset.zero;
     Offset bottomLeft = Offset(0, size.height * 0.25);
     Offset topRight = Offset(size.width, 0);
     Offset bottomRight = Offset(size.width, size.height * 0.5);
 
     Offset leftCurveControlPoint = Offset(
-        circleCenter.dx * 0.5, size.height - AVATAR_RADIUS_WITH_MARGIN * 1.35);
+        circleCenter.dx * 0.5, size.height - _AVATAR_RADIUS_WITH_MARGIN * 1.35);
     Offset rightCurveControlPoint =
-        Offset(circleCenter.dx * 1.7, size.height - AVATAR_RADIUS_WITH_MARGIN);
+        Offset(circleCenter.dx * 1.7, size.height - _AVATAR_RADIUS_WITH_MARGIN);
 
-    final arcStartAngle = 200 / 180 * pi;
+    final arcStartAngle = 200 / 180 * math.pi;
     final avatarLeftPointX =
-        circleCenter.dx + AVATAR_RADIUS_WITH_MARGIN * cos(arcStartAngle);
+        circleCenter.dx + _AVATAR_RADIUS_WITH_MARGIN * math.cos(arcStartAngle);
     final avatarLeftPointY =
-        circleCenter.dy + AVATAR_RADIUS_WITH_MARGIN * sin(arcStartAngle);
+        circleCenter.dy + _AVATAR_RADIUS_WITH_MARGIN * math.sin(arcStartAngle);
     Offset avatarLeftPoint =
         Offset(avatarLeftPointX, avatarLeftPointY); // the left point of the arc
 
-    final arcEndAngle = -5 / 180 * pi;
+    final arcEndAngle = -5 / 180 * math.pi;
     final avatarRightPointX =
-        circleCenter.dx + AVATAR_RADIUS_WITH_MARGIN * cos(arcEndAngle);
+        circleCenter.dx + _AVATAR_RADIUS_WITH_MARGIN * math.cos(arcEndAngle);
     final avatarRightPointY =
-        circleCenter.dy + AVATAR_RADIUS_WITH_MARGIN * sin(arcEndAngle);
+        circleCenter.dy + _AVATAR_RADIUS_WITH_MARGIN * math.sin(arcEndAngle);
     Offset avatarRightPoint = Offset(
         avatarRightPointX, avatarRightPointY); // the right point of the arc
 
     Path path = Path()
-      ..moveTo(topLeft.dx,
-          topLeft.dy) // this move isn't required since the start point is (0,0)
+      ..moveTo(topLeft.dx, topLeft.dy)
       ..lineTo(bottomLeft.dx, bottomLeft.dy)
       ..quadraticBezierTo(leftCurveControlPoint.dx, leftCurveControlPoint.dy,
           avatarLeftPoint.dx, avatarLeftPoint.dy)
       ..arcToPoint(avatarRightPoint,
-          radius: Radius.circular(AVATAR_RADIUS_WITH_MARGIN))
+          radius: Radius.circular(_AVATAR_RADIUS_WITH_MARGIN))
       ..quadraticBezierTo(rightCurveControlPoint.dx, rightCurveControlPoint.dy,
           bottomRight.dx, bottomRight.dy)
       ..lineTo(topRight.dx, topRight.dy)
