@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'buttons/social_button.dart';
 import 'custom_widget_container.dart';
 import 'otp_widget.dart';
+import 'spinner/spinner.dart';
 import 'user_profile/profile_header.dart';
 
 class CustomWidgetsData {
   static final List<CustomWidgetData> data = [
+    CustomWidgetData(
+        customWidget: Spinner(size: 200),
+        tags: ['spinner', 'loader', 'dots', 'animation'],
+        scale: 0.92),
     CustomWidgetData(
         customWidget: OtpWidget(Colors.pink),
         tags: ['otp', 'pin code', 'keypad'],

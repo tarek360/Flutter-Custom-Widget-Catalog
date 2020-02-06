@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'custom_widget_container.dart';
 import 'custom_widgets_data.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Api Filter list Demo',
+      title: 'Flutter Custom Widget Catalog',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -88,7 +88,6 @@ class _HomePageState extends State<HomePage> {
         maxCrossAxisExtent: widgetContainerWidth,
         childAspectRatio: widgetContainerWidth / widgetContainerHeight,
       ),
-//      shrinkWrap: true,
       itemCount: _filteredCustomWidgets.length,
       itemBuilder: (BuildContext context, int index) {
         return _filteredCustomWidgets[index].widget;
