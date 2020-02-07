@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'buttons/social_button.dart';
+import 'core/vector_icons.dart';
 
 const double widgetContainerWidth = 420;
 const double widgetContainerHeight = 450;
@@ -6,10 +10,14 @@ const double widgetContainerHeight = 450;
 class WidgetContainer extends StatelessWidget {
   final Widget child;
   final List<String> tags;
+  final String gist;
   final double scale;
 
   WidgetContainer(
-      {@required this.child, @required this.tags, this.scale = 1.0});
+      {@required this.child,
+      @required this.tags,
+      @required this.gist,
+      this.scale = 1.0});
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +41,13 @@ class WidgetContainer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(
-                    icon: Icon(Icons.content_copy),
-                    onPressed: () {},
-                    tooltip: "Copy code",
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.link),
-                    onPressed: () {},
-                    tooltip: "Github",
-                  ),
+                  SocialCircularButton(
+                      color: Colors.grey.shade100,
+                      icon: VectorIcon(VectorIcons.github, color: Colors.grey.shade800),
+                      tooltip: 'Github Gist',
+                      onPressed: () {
+                        _openGist(gist);
+                      }),
                 ],
               ),
               Center(child: Transform.scale(scale: scale, child: child)),
@@ -59,5 +64,15 @@ class WidgetContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _openGist(String gist) async {
+    print('$gist');
+    final url = 'https://gist.github.com/tarek360/$gist';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

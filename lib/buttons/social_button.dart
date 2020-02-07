@@ -35,7 +35,7 @@ class SocialCircularButton extends StatelessWidget {
           color: buttonColor,
           shape: CircleBorder(),
         ),
-        child: IconButton(icon: icon, tooltip: tooltip, onPressed: () {}),
+        child: IconButton(icon: icon, tooltip: tooltip, onPressed: onPressed),
       ),
     );
   }
@@ -72,7 +72,7 @@ class SocialButton extends StatelessWidget {
                     .copyWith(color: Colors.white))
           ],
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         color: buttonColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
