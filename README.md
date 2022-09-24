@@ -1,3 +1,3 @@
-# flutter_custom_widget_catalog
+## Flutter Custom Widget Catalog.
 
-Flutter Custom Widget Catalog.
+https://tarek360.github.io/Flutter-Custom-Widget-Catalog
